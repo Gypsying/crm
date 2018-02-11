@@ -1,0 +1,83 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>新起点</title>
+    <link rel="Shortcut Icon" href="{% static 'arya/img/header.png' %}"/>
+    <link rel="stylesheet" href="{% static 'arya/plugin/layui/css/layui.css' %}">
+    {% block css %} {% endblock %}
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+        <div class="layui-logo">在线教育CRM</div>
+        <!-- 头部区域（可配合layui已有的水平导航） -->
+        <ul class="layui-nav layui-layout-left">
+            <li class="layui-nav-item"><a href="">虚拟化</a></li>
+            <li class="layui-nav-item"><a href="">大数据</a></li>
+            <li class="layui-nav-item"><a href="">图像识别</a></li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">其它方向</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="">邮件管理</a></dd>
+                    <dd><a href="">消息管理</a></dd>
+                    <dd><a href="">授权管理</a></dd>
+                </dl>
+            </li>
+        </ul>
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item">
+                <a href="javascript:;">
+                    <img src="{% static 'arya/img/avatar.jpg' %}" class="layui-nav-img">
+                    standby
+                </a>
+                <dl class="layui-nav-child">
+                    <dd><a href="">基本资料</a></dd>
+                    <dd><a href="">安全设置</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item"><a href="/clear/">退出</a></li>
+        </ul>
+    </div>
+
+    {% load menu_gennerator %}
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <div class="left_menu">
+                {% menu_show request %}
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-body">
+        <!-- 内容主体区域 -->
+        <div style="padding: 15px;">
+            {% block content %} {% endblock %}
+        </div>
+    </div>
+
+    <div class="layui-footer" style="text-align: center;">
+        <!-- 底部固定区域 -->
+        Copyright@<a href="http://www.cnblogs.com/standby/" target="_blank">71standby</a>
+    </div>
+</div>
+<script src="{% static 'arya/plugin/jquery/js/jquery-3.2.1.js' %}"></script>
+<script src="{% static 'arya/plugin/layui/layui.all.js' %}"></script>
+<script src="{% static 'rbac/js/rbac_layui.js' %}"></script>
+
+{% block  js %} {% endblock %}
+
+<script>
+    ;!function () {
+        //无需再执行layui.use()方法加载模块，直接使用即可
+        var form = layui.form
+            , layer = layui.layer;
+
+        //…
+    }();
+</script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+
+{% for menu_id,item_dict in permission_menu_dict.items %}
+     <div class="item">
+        <div class="menu_title">
+            <a href="#" class="{{ item_dict.opened }}">{{ item_dict.menu_title }}</a>
+        </div>
+        <div class="menu_items {{ item_dict.opened }}">
+            {% for permission in item_dict.children %}
+                <a href={{ permission.url }} class="{{ permission.opened }}">{{ permission.title }}</a>
+            {% endfor %}
+        </div>
+     </div>
+{% endfor %}

@@ -1,0 +1,16 @@
+<ul class="layui-nav layui-nav-tree" lay-filter="test">
+    {% for menu_id,item_dict in permission_menu_dict.items %}
+        <li class="layui-nav-item">
+            <a href="javascript:;" class="{{ item_dict.opened }}">{{ item_dict.menu_title }}</a>
+            <dl class="layui-nav-child">
+                {% for permission in item_dict.children %}
+                    {% if permission.opened %}
+                        <dd class="permission_title layui-this"><a href={{ permission.url }} class="{{ permission.opened }}">{{ permission.title }}</a></dd>
+                    {% else %}
+                        <dd class="permission_title"><a href={{ permission.url }} class="{{ permission.opened }}">{{ permission.title }}</a></dd>
+                    {% endif %}
+                {% endfor %}
+            </dl>
+        </li>
+    {% endfor %}
+</ul>

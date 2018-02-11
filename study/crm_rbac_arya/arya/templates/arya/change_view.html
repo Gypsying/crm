@@ -1,0 +1,27 @@
+{% extends "arya/layout.html" %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'arya/plugin/bootstrap/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'arya/css/form-control.css' %}">
+{% endblock %}
+
+{% block content %}
+
+    <div class="breadcrumb">
+        <span class="layui-breadcrumb">
+          <a href="/index/">首页</a>
+          <a href="" class="breadcrumb_menu_title"></a>
+          <a href="" class="breadcrumb_menu_item"><cite></cite></a>
+        </span>
+    </div>
+
+    <div>
+        {% include "arya/include/form.html" %}
+    </div>
+{% endblock %}
+
+
+{% block js %}
+    <script src="{% static 'arya/js/breadcrumb.js' %}"></script>
+{% endblock %}

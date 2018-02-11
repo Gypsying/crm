@@ -1,0 +1,109 @@
+{% extends "arya/layout.html" %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'arya/plugin/bootstrap/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'arya/css/filter.css' %}">
+    <link rel="stylesheet" href="{% static 'arya/css/option.css' %}">
+{% endblock %}
+
+{% block content %}
+
+    <div class="breadcrumb">
+        <span class="layui-breadcrumb">
+          <a href="/index/">首页</a>
+          <a href="" class="breadcrumb_menu_title"></a>
+          <a href="" class="breadcrumb_menu_item"><cite></cite></a>
+        </span>
+    </div>
+
+    <div>
+
+        <!-- 组合筛选 -->
+        {% if cl.list_filter %}
+            <div class="comb-search">
+                {% for row in cl.gen_list_filter %}
+                    <div class="row">
+                        {% for col in row %}
+                            {{ col }}
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <!-- 模糊搜索 -->
+        {% if cl.search_list %}
+            <div class="search_option">
+                <form action="" method="get">
+                    <input class="form-control" id="key_input" name="{{ cl.search_attr.name }}" value="{{ cl.search_attr.value }}" type="text" placeholder="请输入关键字..." />
+                    <button class="btn btn-success">
+                        <span class="glyphicon glyphicon-search"></span>
+                    </button>
+                </form>
+            </div>
+        {% endif %}
+
+        <!-- 模糊搜索方式2 -->
+{#        <div class="search_option">#}
+{#            {% if cl.search_list %}#}
+{#                <form method="get">#}
+{#                    <input type="text" name="keyword" id="key_input" class="form-control" placeholder="请输入搜索关键字..." value="{{ cl.keyword }}">#}
+{#                    <input type="submit" value="搜索" class="btn btn-primary">#}
+{#                </form>#}
+{#            {% endif %}#}
+{#        </div>#}
+
+        <!-- 添加button -->
+{#        {% if cl.show_add %}#}
+{#            {{ cl.add_html }}#}
+{#        {% endif %}#}
+
+        <!-- 定制Action和表格数据 -->
+        <form method="post">
+            {% csrf_token %}
+
+            {% if cl.actions %}
+                <div class="multi_option">
+                    <select name="select_action" class="form-control" style="width: 300px; display: inline-block">
+                        {% for action in cl.action_options %}
+                            <option value="{{ action.value }}">{{ action.text }}</option>
+                        {% endfor %}
+                    </select>
+                    <input type="submit" value="执行" class="btn btn-success">
+                </div>
+            {% endif %}
+
+            <table class="table table-striped table-hover">
+                <thead>
+                <tr>
+                    {% for val in cl.table_header %}
+                        <th>{{ val }}</th>
+                    {% endfor %}
+                </tr>
+                </thead>
+                <tbody>
+                {% for item in cl.table_body %}
+                    <tr>
+                        {% for col in item %}
+                            <td>{{ col }}</td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </form>
+
+        <div style="text-align: right">
+            <ul class="pagination">
+                {{ cl.page_html|safe }}
+            </ul>
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script src="{% static 'arya/plugin/bootstrap/js/bootstrap.js' %}"></script>
+    <script src="{% static 'arya/js/breadcrumb.js' %}"></script>
+{% endblock %}

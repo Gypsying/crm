@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/static/plugin/bootstrap/css/bootstrap.css"/>
+    {% block css %}
+
+    {% endblock %}
+</head>
+<body>
+
+<div class="page_header" style="height: 48px; background-color: mediumseagreen">
+    这里是页面头部...
+</div>
+
+    {% block content %}
+
+    {% endblock %}
+
+</body>
+</html>
